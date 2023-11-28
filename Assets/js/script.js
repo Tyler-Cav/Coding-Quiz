@@ -1,9 +1,9 @@
 
 //Trying to create button/list elements that I can push into HTML for each question
-//  choiceOneEl = document.createElement()
-//  choiceTwoEl =
-//  choiceThreeEl =
-//  choiceFourEl =
+ choiceOneEl = document.body.children[1].children[0].children[1].children[0]
+ choiceTwoEl = document.body.children[1].children[0].children[1].children[1]
+ choiceThreeEl = document.body.children[1].children[0].children[1].children[2]
+ choiceFourEl = document.body.children[1].children[0].children[1].children[3]
 
 function quizTime () {
     let timeLeftEl = document.getElementById("timer");
@@ -21,7 +21,6 @@ function quizTime () {
     },100);
 }
 quizTime();
-
 
 // function questionOne{
 

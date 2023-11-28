@@ -1,8 +1,12 @@
 .container {
     display:flex;
+}
+
+.flexHeader {
     align-items: center;
     justify-content: space-between;
-}
+};
+
 /* HEADER SECTION */
 header {
     background-color: grey;
@@ -22,7 +26,12 @@ header a:hover {
     display: none;
 }
 
+/*Quiz Question Options Formatting */
 li {
+    list-style-type: none;
+}
+
+li button {
     border: 2px solid black;
     background-color: grey;
     color: blue;
