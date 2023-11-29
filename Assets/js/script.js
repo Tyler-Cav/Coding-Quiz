@@ -54,12 +54,13 @@ startUpButton.addEventListener("click", function() {
     thirdOption.value = testQuestion.options[2]
     fourthOption.textContent = testQuestion.options[3]
     fourthOption.value = testQuestion.options[3]
-    
+}) 
     //have evnt listener on buttons already
     //current question tracker
-})
-function answer () {
-    
+
+
+function isCorrectAnswer (selectedOption, answer) {
+    return selectedOption === answer
 }
 
 function startTimer () {
@@ -79,7 +80,9 @@ var optionElements = document.querySelectorAll("#options li button")
 //create event listener. Make function to see what it's calling for
 optionElements.forEach(function(optionElement){
     optionElement.addEventListener("click", function(event) {
-        console.log(event.target.value);
+        console.log(event)
+        console.log(isCorrectAnswer(event.target.value, questions[questionNumber-1].answer ))
+
         //when user clicks an option
         //get the value of the button that has been clicked
         //compare teh value that was clicked to the current question answer
