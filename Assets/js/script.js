@@ -34,7 +34,7 @@ var questionElement = document.getElementById("question")
 
 var startUpButton = document.getElementById("startUp")
 startUpButton.addEventListener("click", function() {
-    secondsLeft = 90
+    secondsLeft = 10
     startTimer()
     startUpButton.classList.add("hide")
     questionElement.classList.remove("hide")
@@ -64,11 +64,11 @@ function isCorrectAnswer (selectedOption, answer) {
 }
 
 function startTimer () {
-    setInterval(function () {
+    var secondsRemaining = setInterval(function () {
         secondsLeft--;
         timeLeftEl.textContent = secondsLeft + " Seconds Remaining";
         if (secondsLeft == 0) {
-            clearInterval(secondsInterval);
+            clearInterval(secondsRemaining);
             timeLeftEl.textContent = "Times Up!";
             h2TimeUpEl.textContent = "Times Up!";
         }
