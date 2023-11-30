@@ -32,9 +32,10 @@ var h2TimeUpEl = document.getElementById("timeUp");
 var secondsLeft = 0
 var questionElement = document.getElementById("question")
 
+
 var startUpButton = document.getElementById("startUp")
 startUpButton.addEventListener("click", function() {
-    secondsLeft = 10
+    secondsLeft = 25
     startTimer()
     startUpButton.classList.add("hide")
     questionElement.classList.remove("hide")
@@ -67,10 +68,17 @@ function startTimer () {
     var secondsRemaining = setInterval(function () {
         secondsLeft--;
         timeLeftEl.textContent = secondsLeft + " Seconds Remaining";
-        if (secondsLeft == 0) {
+        if (secondsLeft <= 0 || questionNumber === questions.length + 1) {
             clearInterval(secondsRemaining);
-            timeLeftEl.textContent = "Times Up!";
-            h2TimeUpEl.textContent = "Times Up!";
+            timeLeftEl.textContent = "You finished with " + secondsLeft + " seconds left!";
+            h2TimeUpEl.textContent = "Pencils Down!";
+            questionElement.classList.add("hide")
+            let endScreen = document.querySelector("#gameOver")
+            endScreen.classList.remove("hide")
+            let gameOverText = document.getElementById('gameOver')
+                gameOverText.children[0].textContent = "You finished with " + secondsLeft + " seconds left!"
+
+
         }
     }, 1000);
 }
@@ -99,13 +107,11 @@ optionElements.forEach(function(optionElement){
             fourthOption.textContent = testQuestion.options[3]
             fourthOption.value = testQuestion.options[3]
         } else {
-            questionElement.classList.add("hide")
-            let endScreen = document.querySelector("#gameOver")
-            endScreen.classList.remove("hide")
-            timeLeftEl
+
         }
     })
 });
+
 
         //when user clicks an option
         //get the value of the button that has been clicked
