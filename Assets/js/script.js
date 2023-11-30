@@ -1,3 +1,4 @@
+// Question array with objects to track the promp, options, and answers for each question. questionNumber is to loop over later to move onto the next question along with a comparison to track when game is over.
 var questionNumber = 0
 var questions = [
     {
@@ -27,15 +28,24 @@ var questions = [
     }
 ] 
 
+/**timeLeft and h2TimeUp are referenced to be called when the game is over. 
+secondsLeft is tracking the in-game timer. 
+questionElement is the ID within the enter section which include the question prompt and options.
+*/
 var timeLeftEl = document.getElementById("timer");
 var h2TimeUpEl = document.getElementById("timeUp");
 var secondsLeft = 0
 var questionElement = document.getElementById("question")
 
+/**
+ startUpButton references the first button prompted before the game starts.
+ added click eventlistener which initializes the timer and prompts the first question.
+ */
+
 
 var startUpButton = document.getElementById("startUp")
 startUpButton.addEventListener("click", function() {
-    secondsLeft = 1999
+    secondsLeft = 100
     startTimer()
     startUpButton.classList.add("hide")
     questionElement.classList.remove("hide")
@@ -63,7 +73,9 @@ function isCorrectAnswer (selectedOption, answer) {
     return selectedOption === answer
 }
 
-//Timer Function
+/**Timer Function to track how much time is left
+ if statement tracks if there are 0 seconds remaining which will push to the end game screen. Or if all questions have been answered will also push to end screen.
+ */
 function startTimer () {
     var secondsRemaining = setInterval(function () {
         secondsLeft--;
@@ -83,11 +95,15 @@ function startTimer () {
     }, 1000);
 }
 
+/**
+ optionsElements is selecting the option buttons within each question.
+ Looping over each option and listening for a click
+ If the answer is answered incorrectly it will reduce 10 seconds from the timer. Then if the timer runs to below 0 and there's already less than 10 seconds on the clock. Make secondsLeft = 0.
+ */
 var optionElements = document.querySelectorAll("#options li button")
 //create event listener. Make function to see what it's calling for
 optionElements.forEach(function(optionElement){
     optionElement.addEventListener("click", function(event) {
-        console.log(event)
         var answer = isCorrectAnswer(event.target.value, questions[questionNumber].answer )
         if (!answer) {
             secondsLeft -= 10
@@ -116,7 +132,7 @@ optionElements.forEach(function(optionElement){
         }
     })
 });
-
+//Creating a function for the end screen submit button. Listening for a click which will trigger whatever is inserted into the input tag to store it within localstorage.
 document.querySelector("#gameOver button").addEventListener("click", function(){
     var highscores = JSON.parse(localStorage.getItem("scores")) || []
     var newScore = {score: secondsLeft, initials: document.querySelector("#gameOver input").value}
@@ -124,9 +140,3 @@ document.querySelector("#gameOver button").addEventListener("click", function(){
     localStorage.setItem("scores", JSON.stringify(highscores))
     document.location.href = "scores.html"
 })
-
-        //when user clicks an option
-        //get the value of the button that has been clicked
-        //compare teh value that was clicked to the current question answer
-        //if both are the same, move onto next question
-        //else remove 10 seconds, move onto next question

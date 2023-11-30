@@ -2,6 +2,14 @@
     display:flex;
 }
 
+ */
+
+
+/* HEADER SECTION */
+header {
+    background-color: grey;
+    
+}
 .flexHeader {
     align-items: center;
     justify-content: space-between;
@@ -9,19 +17,13 @@
     height: 40px;
 };
 
-/* HEADER SECTION */
-header {
-    background-color: grey;
-    
+header a #href {
+    color: black;
 }
-
-header a {
-    color: Black;
-    align-items:center
-}
-
 header a:hover {
-    color: blue
+    color: white;
+    text-decoration: none;
+    
 }
 
 .hide {
