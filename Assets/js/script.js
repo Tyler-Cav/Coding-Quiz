@@ -1,4 +1,4 @@
-var questionNumber = 1
+var questionNumber = 0
 var questions = [
     {
         prompt: "What is the basic keyword to create a loop?",
@@ -35,11 +35,11 @@ var questionElement = document.getElementById("question")
 
 var startUpButton = document.getElementById("startUp")
 startUpButton.addEventListener("click", function() {
-    secondsLeft = 25
+    secondsLeft = 1999
     startTimer()
     startUpButton.classList.add("hide")
     questionElement.classList.remove("hide")
-    let testQuestion = questions[questionNumber-1]
+    let testQuestion = questions[questionNumber]
     console.log(testQuestion)
     let firstQuestionPrompt = document.getElementById("questionPrompt")
     firstQuestionPrompt.textContent = testQuestion.prompt
@@ -68,7 +68,7 @@ function startTimer () {
     var secondsRemaining = setInterval(function () {
         secondsLeft--;
         timeLeftEl.textContent = secondsLeft + " Seconds Remaining";
-        if (secondsLeft <= 0 || questionNumber === questions.length + 1) {
+        if (secondsLeft <= 0 || questionNumber === questions.length) {
             clearInterval(secondsRemaining);
             timeLeftEl.textContent = "You finished with " + secondsLeft + " seconds left!";
             h2TimeUpEl.textContent = "Pencils Down!";
@@ -88,10 +88,15 @@ var optionElements = document.querySelectorAll("#options li button")
 optionElements.forEach(function(optionElement){
     optionElement.addEventListener("click", function(event) {
         console.log(event)
-        console.log(isCorrectAnswer(event.target.value, questions[questionNumber-1].answer ))
+        var answer = isCorrectAnswer(event.target.value, questions[questionNumber].answer )
+        if (!answer) {
+            secondsLeft -= 10
+            if (secondsLeft < 0)
+                secondsLeft = 0
+        }
         questionNumber += 1
-        if (questionNumber < questions.length + 1) {
-            let testQuestion = questions[questionNumber-1]
+        if (questionNumber < questions.length) {
+            let testQuestion = questions[questionNumber]
             let secondQuestionPrompt = document.getElementById("questionPrompt")
             secondQuestionPrompt.textContent = testQuestion.prompt
             let firstOption = document.getElementById("optionOne")
@@ -112,6 +117,13 @@ optionElements.forEach(function(optionElement){
     })
 });
 
+document.querySelector("#gameOver button").addEventListener("click", function(){
+    var highscores = JSON.parse(localStorage.getItem("scores")) || []
+    var newScore = {score: secondsLeft, initials: document.querySelector("#gameOver input").value}
+    highscores.push(newScore)
+    localStorage.setItem("scores", JSON.stringify(highscores))
+    document.location.href = "scores.html"
+})
 
         //when user clicks an option
         //get the value of the button that has been clicked
