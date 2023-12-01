@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Assets/css/stylesheet.css" />
+    <title>Coding-Quiz</title>
+</head>
+
+<body>
+    <header class="container flexHeader"> 
+        <!-- for Highscore use local storage to track -->
+        <a id= "highScore" href="Assets/Highscore-Assets/scores.html"> HIGHSCORE </a>
+        <div id="timer"></div>
+    </header>
+    <main>
+        <section>
+            <!-- start section which is what is first prompted upon loading the website -->
+            <div><button id="startUp">Start Quiz</button></div>
+            <h2 id="timeUp"></h2>
+        </section>
+        <section id="question" class="hide">
+            <!--H2 Prompts the question -->
+            <h2 id="questionPrompt"></h2>
+            <!--The buttons below are being used to embed each question into the website after an option is selected -->
+            <div id="options"> 
+                <li><button id="optionOne"></button></li>
+                <li><button id="optionTwo"></button></li>
+                <li><button id="optionThree"></button></li>
+                <li><button id="optionFour"></button></li>
+                <div id="rightOrWrongAnswer"></div>
+            </div>
+        </section>
+        <!--Game over screen once time runs out or all questions have been answered -->
+        <section id="gameOver" class="hide">
+            <p></p>
+            <input placeholder="Enter Your Initials" type="text" />
+            <button >Submit</button>
+        </section>
+    </main>
+</body>
+<script src="Assets/js/script.js"> </script>
+
+</html>

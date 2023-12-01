@@ -1,0 +1,54 @@
+.container {
+    display:flex;
+}
+
+ */
+
+
+/* HEADER SECTION */
+header {
+    background-color: grey;
+    
+}
+.flexHeader {
+    align-items: center;
+    justify-content: space-between;
+    background-color: grey;
+    height: 40px;
+};
+
+header a #href {
+    color: black;
+}
+header a:hover {
+    color: white;
+    text-decoration: none;
+    
+}
+
+.hide {
+    display: none;
+}
+
+/*Quiz Question Options Formatting */
+li {
+    list-style-type: none;
+}
+
+li button {
+    border: 2px solid black;
+    background-color: grey;
+    color: blue;
+    list-style-type: none;
+    border-radius: 3px;
+    width:50%;
+    height: 35px;
+    margin-top: 2%;
+}
+
+li button:hover {
+    border: 3px solid black;
+    font-size:larger;
+    position: center;
+    
+}
