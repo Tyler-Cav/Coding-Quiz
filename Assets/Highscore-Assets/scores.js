@@ -7,6 +7,6 @@ highscores.sort(function(x, y) {
 
 highscores.forEach(function(score) {
     var liEl = document.createElement("li")
-    liEl.textContent = score.initials + " - " + score.score
+    liEl.textContent = score.initials + ": " + score.score + " seconds "
     document.querySelector("ol").append(liEl)
 })

@@ -73,6 +73,15 @@ function isCorrectAnswer (selectedOption, answer) {
     return selectedOption === answer
 }
 
+function wrongAnswer () {
+    incorrectID = document.querySelector("#wrongAnswer")
+    let incorrectText = document.createElement("h3")
+    incorrectText.textContent = "Incorrect"
+    incorrectID.append(incorrectText)
+    setTimeout(function() {
+        incorrectText.textContent = ""
+    },500)
+}
 /**Timer Function to track how much time is left
  if statement tracks if there are 0 seconds remaining which will push to the end game screen. Or if all questions have been answered will also push to end screen.
  */
@@ -107,6 +116,7 @@ optionElements.forEach(function(optionElement){
         var answer = isCorrectAnswer(event.target.value, questions[questionNumber].answer )
         if (!answer) {
             secondsLeft -= 10
+            wrongAnswer ()
             if (secondsLeft < 0)
                 secondsLeft = 0
         }
@@ -138,5 +148,5 @@ document.querySelector("#gameOver button").addEventListener("click", function(){
     var newScore = {score: secondsLeft, initials: document.querySelector("#gameOver input").value}
     highscores.push(newScore)
     localStorage.setItem("scores", JSON.stringify(highscores))
-    document.location.href = "scores.html"
+    document.location.href="Assets/Highscore-Assets/scores.html"
 })
