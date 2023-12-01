@@ -161,5 +161,5 @@ document.querySelector("#gameOver button").addEventListener("click", function(){
     var newScore = {score: secondsLeft, initials: document.querySelector("#gameOver input").value}
     highscores.push(newScore)
     localStorage.setItem("scores", JSON.stringify(highscores))
-    document.location.href="Assets/Highscore-Assets/scores.html"
+    document.location.href="scores.html"
 })
