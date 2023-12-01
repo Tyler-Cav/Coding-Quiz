@@ -80,7 +80,7 @@ function wrongAnswer () {
     incorrectID.append(incorrectText)
     setTimeout(function() {
         incorrectText.textContent = ""
-    },500)
+    },800)
 }
 //populates h3 text if answer selected was right
 function correctAnswer () {
@@ -90,7 +90,7 @@ function correctAnswer () {
     correctID.append(correctText)
     setTimeout(function() {
         correctText.textContent = ""
-    },500)
+    },800)
 }
 
 /**Timer Function to track how much time is left
