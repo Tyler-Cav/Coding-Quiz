@@ -72,9 +72,9 @@ startUpButton.addEventListener("click", function() {
 function isCorrectAnswer (selectedOption, answer) {
     return selectedOption === answer
 }
-
+//populates h3 text if answer selected was wrong
 function wrongAnswer () {
-    incorrectID = document.querySelector("#wrongAnswer")
+    incorrectID = document.querySelector("#rightOrWrongAnswer")
     let incorrectText = document.createElement("h3")
     incorrectText.textContent = "Incorrect"
     incorrectID.append(incorrectText)
@@ -82,6 +82,17 @@ function wrongAnswer () {
         incorrectText.textContent = ""
     },500)
 }
+//populates h3 text if answer selected was right
+function correctAnswer () {
+    correctID = document.querySelector("#rightOrWrongAnswer")
+    let correctText = document.createElement("h3")
+    correctText.textContent = "Correct"
+    correctID.append(correctText)
+    setTimeout(function() {
+        correctText.textContent = ""
+    },500)
+}
+
 /**Timer Function to track how much time is left
  if statement tracks if there are 0 seconds remaining which will push to the end game screen. Or if all questions have been answered will also push to end screen.
  */
@@ -119,6 +130,8 @@ optionElements.forEach(function(optionElement){
             wrongAnswer ()
             if (secondsLeft < 0)
                 secondsLeft = 0
+        } else {
+            correctAnswer ()
         }
         questionNumber += 1
         if (questionNumber < questions.length) {
